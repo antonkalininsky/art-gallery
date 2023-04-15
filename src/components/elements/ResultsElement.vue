@@ -1,17 +1,41 @@
 <script setup>
-function wayToArt(num) {
-    return `./src/assets/img/art/art${num}.png`;
+import { ref } from "vue";
+
+const startImage = ref([]);
+
+async function getImages() {
+    const requestUrl =
+        "https://api.unsplash.com/search/photos?query=art&client_id=po0n1en479mJFHQq5_PnYTuwJ4iApTfNgYa7kWuD07c";
+    const res = await fetch(requestUrl);
+    const finalRes = await res.json();
+    startImage.value = finalRes.results;
 }
+getImages();
 
-let arts = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
+function isHorisontal(w, h) {
+    return w > h ? true : false;
+}
 </script>
 
 <template lang="">
     <div class="results wrap-prop">
         <div class="results__grid">
-            <div class="results__item" v-for="art in arts">
-                <img :src="wayToArt(art)" alt="" class="results__img" />
+            <div class="results__item" v-for="art in startImage">
+                <img
+                    :src="art.urls.regular"
+                    alt=""
+                    class="results__img"
+                    :class="{
+                        results__img_vertical: !isHorisontal(
+                            art.width,
+                            art.height
+                        ),
+                        results__img_horisontal: isHorisontal(
+                            art.width,
+                            art.height
+                        ),
+                    }"
+                />
             </div>
         </div>
         <div class="results__loading">
@@ -48,11 +72,27 @@ let arts = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     height: 453.74px;
     border-radius: 6px;
     overflow: hidden;
+
+    background-color: #000;
+    cursor: pointer;
 }
 
 .results__img {
+    transition: opacity 0.2s linear;
+}
+
+.results__item:hover .results__img {
+    opacity: 0.3;
+}
+
+.results__img_vertical {
     width: 100%;
     height: auto;
+}
+
+.results__img_horisontal {
+    width: auto;
+    height: 100%;
 }
 
 .results__loading {
