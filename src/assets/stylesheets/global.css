@@ -16,3 +16,21 @@ a {
     line-height: 23px;
     color: #fff;
 }
+
+.wrap-prop {
+    width: 1470px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 1600px) {
+    .wrap-prop {
+        width: 1200px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .wrap-prop {
+        width: 970px;
+    }
+}

@@ -1,16 +1,16 @@
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps } from "vue";
 
 const props = defineProps({
     hideSearch: {
-        default: false
+        default: false,
     },
 });
 </script>
 
 <template lang="">
     <header class="header">
-        <div class="header__inner">
+        <div class="header__inner wrap-prop">
             <div class="header__logo">
                 <img src="@/assets/img/logo/logo.png" alt="" class="logo" />
             </div>
@@ -47,12 +47,14 @@ const props = defineProps({
 }
 
 .header__inner {
-    width: 1470px;
-    margin: 0 auto;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.logo {
+    width: 100%;
+    height: auto;
 }
 
 .nav,
@@ -74,5 +76,28 @@ const props = defineProps({
 
 .nav__text {
     margin-left: 12px;
+}
+
+@media screen and (max-width: 1200px) {
+    .header {
+        height: 110px;
+    }
+
+    .header__logo {
+        width: 150px;
+    }
+}
+@media screen and (max-width: 700px) {
+    .header {
+        height: 70px;
+    }
+
+    .nav__text {
+        display: none;
+    }
+
+    .header__logo {
+        width: 84px;
+    }
 }
 </style>
