@@ -5,6 +5,7 @@ export const useGeneralStore = defineStore("general", () => {
     const searchWord = ref("");
     const shownResults = ref([]);
     const isLoading = ref(false);
+    const favouriteList = ref([]);
 
     watch(searchWord, () => {
         if (searchWord.value === "") {
@@ -34,8 +35,12 @@ export const useGeneralStore = defineStore("general", () => {
         shownResults.value = finalRes;
         // isLoading.value = false;
         setTimeout(() => {isLoading.value = false}, 300);
-        
     }
 
-    return { searchWord, shownResults, isLoading, doSearch, getRandomImages };
+    function addFavourite(id) {
+        favouriteList.value.push(id);
+        console.log(favouriteList.value);
+    }
+
+    return { searchWord, shownResults, isLoading, doSearch, getRandomImages, addFavourite };
 });

@@ -1,34 +1,14 @@
 <script setup>
 import { useGeneralStore } from "@/stores/general"
+import CardElement from "../units/CardElement.vue";
 const store = useGeneralStore();
 store.getRandomImages();
-
-
-function isHorisontal(w, h) {
-    return w > h ? true : false;
-}
 </script>
 
 <template lang="">
     <div class="results wrap-prop">
         <div class="results__grid" v-if="!store.isLoading">
-            <div class="results__item" v-for="art in store.shownResults">
-                <img
-                    :src="art.urls.regular"
-                    alt=""
-                    class="results__img"
-                    :class="{
-                        results__img_vertical: !isHorisontal(
-                            art.width,
-                            art.height
-                        ),
-                        results__img_horisontal: isHorisontal(
-                            art.width,
-                            art.height
-                        ),
-                    }"
-                />
-            </div>
+            <CardElement :data="art" v-for="art in store.shownResults"/>
         </div>
         <div class="results__loading" v-if="store.isLoading">
             <img
