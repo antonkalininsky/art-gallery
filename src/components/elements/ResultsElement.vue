@@ -2,15 +2,18 @@
 import { ref } from "vue";
 
 const startImage = ref([]);
+const isLoading = ref(false);
 
-async function getImages() {
+async function getRandomImages() {
+    isLoading.value = true;
     const requestUrl =
-        "https://api.unsplash.com/search/photos?query=art&client_id=po0n1en479mJFHQq5_PnYTuwJ4iApTfNgYa7kWuD07c";
+        "https://api.unsplash.com/photos/random/?&count=9&client_id=po0n1en479mJFHQq5_PnYTuwJ4iApTfNgYa7kWuD07c";
     const res = await fetch(requestUrl);
     const finalRes = await res.json();
-    startImage.value = finalRes.results;
+    startImage.value = finalRes;
+    isLoading.value = false;
 }
-getImages();
+getRandomImages();
 
 function isHorisontal(w, h) {
     return w > h ? true : false;
@@ -19,7 +22,7 @@ function isHorisontal(w, h) {
 
 <template lang="">
     <div class="results wrap-prop">
-        <div class="results__grid">
+        <div class="results__grid" v-show="!isLoading">
             <div class="results__item" v-for="art in startImage">
                 <img
                     :src="art.urls.regular"
@@ -38,7 +41,7 @@ function isHorisontal(w, h) {
                 />
             </div>
         </div>
-        <div class="results__loading">
+        <div class="results__loading" v-show="isLoading">
             <img
                 src="@/assets/img/icons/loading.png"
                 alt=""
@@ -65,6 +68,7 @@ function isHorisontal(w, h) {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 27px;
     grid-template-rows: repeat(auto-fill, 0.5fr);
+    padding-bottom: 70px;
 }
 
 .results__item {
@@ -97,7 +101,7 @@ function isHorisontal(w, h) {
 
 .results__loading {
     width: fit-content;
-    padding: 70px 0 40px 0;
+    padding-bottom: 40px;
     margin: 0 auto;
 }
 
