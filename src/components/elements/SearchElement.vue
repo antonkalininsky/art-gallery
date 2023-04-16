@@ -1,4 +1,16 @@
-<script setup></script>
+<script setup>
+import { watch, ref } from "vue";
+import { debounce } from "@/funs/debounce"
+const searchWord = ref("");
+
+const searchDebouncer = debounce(() => {
+    console.log(searchWord.value);
+}, 300);
+
+watch(searchWord, () => {
+    searchDebouncer();
+});
+</script>
 
 <template lang="">
     <div class="search">
@@ -6,7 +18,7 @@
             <img src="@/assets/img/bg/bg.png" alt="" class="search__img" />
         </div>
         <div class="search__form form">
-            <input type="text" class="form__input text" placeholder="Поиск" />
+            <input type="text" class="form__input text" placeholder="Поиск" v-model="searchWord"/>
             <button class="form__button">
                 <img
                     class="form__icon"
