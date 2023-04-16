@@ -1,14 +1,16 @@
 <script setup>
-import { useGeneralStore } from "@/stores/general"
+import { defineProps } from "vue";
 import CardElement from "../units/CardElement.vue";
+import { useGeneralStore } from "@/stores/general"
 const store = useGeneralStore();
-store.getRandomImages();
+
+const props = defineProps(["items"]);
 </script>
 
 <template lang="">
     <div class="results wrap-prop">
         <div class="results__grid" v-if="!store.isLoading">
-            <CardElement :data="art" v-for="art in store.shownResults"/>
+            <CardElement :data="item" v-for="item in props.items"/>
         </div>
         <div class="results__loading" v-if="store.isLoading">
             <img

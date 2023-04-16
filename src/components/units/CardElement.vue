@@ -4,6 +4,7 @@ import { useGeneralStore } from "../../stores/general";
 const store = useGeneralStore();
 
 const props = defineProps(["data"]);
+
 function isHorisontal(w, h) {
     return w > h ? true : false;
 }
@@ -105,12 +106,18 @@ function isHorisontal(w, h) {
 <template lang="">
     <div class="card">
         <img
-            :src="props.data.urls.small"
+            :src="props.data.urls.regular"
             alt=""
             class="card__img"
             :class="{
-                card__img_vertical: !isHorisontal(props.data.width, props.data.height),
-                card__img_horisontal: isHorisontal(props.data.width, props.data.height),
+                card__img_vertical: !isHorisontal(
+                    props.data.width,
+                    props.data.height
+                ),
+                card__img_horisontal: isHorisontal(
+                    props.data.width,
+                    props.data.height
+                ),
             }"
         />
         <div class="card__data text">
@@ -119,9 +126,14 @@ function isHorisontal(w, h) {
             <div class="card__buttons">
                 <button
                     class="card__favourite-btn card-button text"
-                    @click="store.addFavourite(1)"
+                    @click="store.toggleFavourite(props.data.id)"
+                    :class="{}"
                 >
-                    Лайк
+                    <span v-if="store.checkFavourite(props.data.id)">
+                        <span class="card-button__status">В избранном</span>
+                        <span class="card-button__suggest">Удалить?</span>
+                    </span>
+                    <span v-else>Сохранить в избранное</span>
                 </button>
                 <button
                     class="card__full-btn card-button text"
@@ -202,6 +214,20 @@ function isHorisontal(w, h) {
     outline: 2px solid #fff;
 }
 
+.card__favourite-btn:hover .card-button__status {
+    display: none;
+}
+
+.card-button__suggest {
+    display: none;
+}
+
+.card__favourite-btn:hover .card-button__suggest {
+    display: inline;
+}
+
+
+
 @media screen and (max-width: 1600px) {
     .card {
         width: 360px;
@@ -210,7 +236,6 @@ function isHorisontal(w, h) {
 }
 
 @media screen and (max-width: 1200px) {
-
     .card {
         width: 473px;
         height: 440px;
@@ -225,7 +250,6 @@ function isHorisontal(w, h) {
 }
 
 @media screen and (max-width: 820px) {
-
     .card {
         width: 550px;
         height: 500px;

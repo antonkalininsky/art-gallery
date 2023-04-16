@@ -11,9 +11,9 @@ export const useGeneralStore = defineStore("general", () => {
         if (searchWord.value === "") {
             getRandomImages();
         } else {
-            doSearch(searchWord.value)
+            doSearch(searchWord.value);
         }
-    })
+    });
 
     const clientId = "po0n1en479mJFHQq5_PnYTuwJ4iApTfNgYa7kWuD07c";
 
@@ -24,7 +24,9 @@ export const useGeneralStore = defineStore("general", () => {
         const finalRes = await res.json();
         shownResults.value = finalRes.results;
         // isLoading.value = false;
-        setTimeout(() => {isLoading.value = false}, 300);
+        setTimeout(() => {
+            isLoading.value = false;
+        }, 300);
     }
 
     async function getRandomImages() {
@@ -34,13 +36,52 @@ export const useGeneralStore = defineStore("general", () => {
         const finalRes = await res.json();
         shownResults.value = finalRes;
         // isLoading.value = false;
-        setTimeout(() => {isLoading.value = false}, 300);
+        setTimeout(() => {
+            isLoading.value = false;
+        }, 300);
     }
 
-    function addFavourite(id) {
-        favouriteList.value.push(id);
-        console.log(favouriteList.value);
+    async function getImageById(id) {
+        isLoading.value = true;
+        console.log(id);
+        const requestUrl = `https://api.unsplash.com/photos/${id}/?&client_id=${clientId}`;
+        const res = await fetch(requestUrl);
+        const finalRes = await res.json();
+        setTimeout(() => {
+            isLoading.value = false;
+        }, 300);
+        return finalRes;
     }
 
-    return { searchWord, shownResults, isLoading, doSearch, getRandomImages, addFavourite };
+    function toggleFavourite(id) {
+        if (checkFavourite(id)) {
+            favouriteList.value.splice(favouriteList.value.indexOf(id), 1);
+        } else {
+            favouriteList.value.push(id);
+        }
+    }
+
+    function checkFavourite(id) {
+        return favouriteList.value.includes(id);
+    }
+
+    async function getFavouriteItems() {
+        const buf = [];
+        for (let item of favouriteList.value) {
+            console.log();
+            buf.push(await getImageById(item));
+        }
+        return buf;
+    }
+
+    return {
+        searchWord,
+        shownResults,
+        isLoading,
+        doSearch,
+        getRandomImages,
+        toggleFavourite,
+        checkFavourite,
+        getFavouriteItems,
+    };
 });
