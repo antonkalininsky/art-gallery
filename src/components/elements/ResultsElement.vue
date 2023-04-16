@@ -1,19 +1,8 @@
 <script setup>
-import { ref } from "vue";
+import { useGeneralStore } from "@/stores/general"
+const store = useGeneralStore();
+store.getRandomImages();
 
-const startImage = ref([]);
-const isLoading = ref(false);
-
-async function getRandomImages() {
-    isLoading.value = true;
-    const requestUrl =
-        "https://api.unsplash.com/photos/random/?&count=9&client_id=po0n1en479mJFHQq5_PnYTuwJ4iApTfNgYa7kWuD07c";
-    const res = await fetch(requestUrl);
-    const finalRes = await res.json();
-    startImage.value = finalRes;
-    isLoading.value = false;
-}
-getRandomImages();
 
 function isHorisontal(w, h) {
     return w > h ? true : false;
@@ -22,8 +11,8 @@ function isHorisontal(w, h) {
 
 <template lang="">
     <div class="results wrap-prop">
-        <div class="results__grid" v-show="!isLoading">
-            <div class="results__item" v-for="art in startImage">
+        <div class="results__grid" v-if="!store.isLoading">
+            <div class="results__item" v-for="art in store.shownResults">
                 <img
                     :src="art.urls.regular"
                     alt=""
@@ -41,7 +30,7 @@ function isHorisontal(w, h) {
                 />
             </div>
         </div>
-        <div class="results__loading" v-show="isLoading">
+        <div class="results__loading" v-if="store.isLoading">
             <img
                 src="@/assets/img/icons/loading.png"
                 alt=""

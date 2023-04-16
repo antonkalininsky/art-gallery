@@ -1,10 +1,14 @@
 <script setup>
 import { watch, ref } from "vue";
 import { debounce } from "@/funs/debounce"
+import { useGeneralStore } from "@/stores/general"
+
+const store = useGeneralStore();
+
 const searchWord = ref("");
 
 const searchDebouncer = debounce(() => {
-    console.log(searchWord.value);
+    store.searchWord = searchWord.value;
 }, 300);
 
 watch(searchWord, () => {
