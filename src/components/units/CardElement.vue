@@ -149,9 +149,6 @@ function isHorisontal(w, h) {
     align-items: center;
 }
 
-.button__img {
-}
-
 .button_favourite {
     width: 49.07px;
     height: 49.07px;
