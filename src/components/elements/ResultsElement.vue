@@ -1,15 +1,19 @@
 <script setup>
 import CardElement from "../units/CardElement.vue";
-import { useGeneralStore } from "@/stores/general"
+import { useGeneralStore } from "@/stores/general";
 const store = useGeneralStore();
 
 const props = defineProps(["items"]);
+console.log(props.items);
 </script>
 
 <template lang="">
     <div class="results wrap-prop">
+        <h2 class="results__empty text" v-if="props.items.length === 0 && !store.isLoading">
+            Ничего не найдено
+        </h2>
         <div class="results__grid" v-if="!store.isLoading">
-            <CardElement :data="item" v-for="item in props.items"/>
+            <CardElement :data="item" v-for="item in props.items" />
         </div>
         <div class="results__loading" v-if="store.isLoading">
             <img
@@ -33,6 +37,13 @@ const props = defineProps(["items"]);
     width: fit-content;
     padding-top: 122px;
 }
+
+.results__empty {
+    color: #000;
+    font-size: 26px;
+    font-weight: 900;
+}
+
 .results__grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
