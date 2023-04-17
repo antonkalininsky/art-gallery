@@ -16,14 +16,14 @@ const props = defineProps(["data"]);
                 <div class="panel__author">
                     <div class="panel__avatar">
                         <img
-                            src="./../../assets/img/avatars/avatar.png"
+                            :src="props.data.user.profile_image.medium"
                             alt=""
                             class="panel__img"
                         />
                     </div>
                     <div class="panel__text">
-                        <div class="panel__name">Вангог</div>
-                        <div class="panel__tag">@vangog</div>
+                        <div class="panel__name">{{ props.data.user.name }}</div>
+                        <div class="panel__tag" v-if="props.data.user.instagram_username !== null">@{{ props.data.user.instagram_username }}</div>
                     </div>
                 </div>
                 <div class="panel__buttons">
@@ -90,6 +90,13 @@ const props = defineProps(["data"]);
     align-items: center;
 }
 
+.panel__avatar {
+    border-radius: 8px;
+    overflow: hidden;
+    width: 55px;
+    height: 55px;
+}
+
 .panel__name {
     font-family: "Roboto";
     font-style: normal;
@@ -103,8 +110,8 @@ const props = defineProps(["data"]);
 }
 
 .panel__img {
-    width: 55px;
-    height: 55px;
+    width: 100%;
+    height: auto;
 }
 
 .panel__buttons {

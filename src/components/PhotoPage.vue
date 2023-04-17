@@ -12,7 +12,6 @@ const imgData = ref();
 store.getImageById(route.query.id).then(
     (result) => {
         imgData.value = result;
-        console.log(imgData.value);
     },
     (error) => {
         console.log(error);
