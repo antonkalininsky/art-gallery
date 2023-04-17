@@ -1,5 +1,11 @@
 <script setup>
+import { useGeneralStore } from '../../stores/general';
+const store = useGeneralStore();
 const props = defineProps(["data"]);
+
+function openInNewTab() {
+    window.open(props.data.urls.regular);
+}
 </script>
 
 <template lang="">
@@ -27,7 +33,8 @@ const props = defineProps(["data"]);
                     </div>
                 </div>
                 <div class="panel__buttons">
-                    <button class="button button_favourite text">
+                    <button class="button button_favourite text" @click="store.toggleFavourite(props.data.id)"
+                    :class="{ 'button_favourite_true':  store.checkFavourite(props.data.id)}">
                         <div class="button__inner">
                             <img
                                 src="@/assets/img/icons/heart-black.svg"
@@ -36,7 +43,7 @@ const props = defineProps(["data"]);
                             />
                         </div>
                     </button>
-                    <button class="button button_download text">
+                    <button class="button button_download text" @click="openInNewTab()">
                         <div class="button__inner">
                             <img
                                 src="@/assets/img/icons/download.svg"
@@ -150,6 +157,14 @@ const props = defineProps(["data"]);
 
 .button_favourite:hover {
     background: #ccc;
+}
+
+.button_favourite_true {
+    background-color: rgb(81, 176, 81);
+}
+
+.button_favourite_true:hover {
+    background-color: rgb(217, 56, 56);
 }
 
 .button_download {
