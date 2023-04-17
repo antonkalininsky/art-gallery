@@ -34,3 +34,21 @@ a {
         width: 970px;
     }
 }
+
+@media screen and (max-width: 1050px) {
+    .wrap-prop {
+        width: 650px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .wrap-prop {
+        width: 500px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .wrap-prop {
+        width: 335px;
+    }
+}

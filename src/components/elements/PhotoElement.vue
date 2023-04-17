@@ -1,5 +1,5 @@
 <script setup>
-import { useGeneralStore } from '../../stores/general';
+import { useGeneralStore } from "../../stores/general";
 const store = useGeneralStore();
 const props = defineProps(["data"]);
 
@@ -28,13 +28,27 @@ function openInNewTab() {
                         />
                     </div>
                     <div class="panel__text">
-                        <div class="panel__name">{{ props.data.user.name }}</div>
-                        <div class="panel__tag" v-if="props.data.user.instagram_username !== null">@{{ props.data.user.instagram_username }}</div>
+                        <div class="panel__name">
+                            {{ props.data.user.name }}
+                        </div>
+                        <div
+                            class="panel__tag"
+                            v-if="props.data.user.instagram_username !== null"
+                        >
+                            @{{ props.data.user.instagram_username }}
+                        </div>
                     </div>
                 </div>
                 <div class="panel__buttons">
-                    <button class="button button_favourite text" @click="store.toggleFavourite(props.data.id)"
-                    :class="{ 'button_favourite_true':  store.checkFavourite(props.data.id)}">
+                    <button
+                        class="button button_favourite text"
+                        @click="store.toggleFavourite(props.data.id)"
+                        :class="{
+                            button_favourite_true: store.checkFavourite(
+                                props.data.id
+                            ),
+                        }"
+                    >
                         <div class="button__inner">
                             <img
                                 src="@/assets/img/icons/heart-black.svg"
@@ -43,7 +57,10 @@ function openInNewTab() {
                             />
                         </div>
                     </button>
-                    <button class="button button_download text" @click="openInNewTab()">
+                    <button
+                        class="button button_download text"
+                        @click="openInNewTab()"
+                    >
                         <div class="button__inner">
                             <img
                                 src="@/assets/img/icons/download.svg"
@@ -51,7 +68,7 @@ function openInNewTab() {
                                 srcset=""
                                 class="button__img"
                             />
-                            Download
+                            <span class="button__text"> Download </span>
                         </div>
                     </button>
                 </div>
@@ -127,7 +144,9 @@ function openInNewTab() {
 .photo__img {
     width: 100%;
     height: auto;
-    padding-bottom: 40px;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.5);
 }
 
 .button {
@@ -183,5 +202,58 @@ function openInNewTab() {
 
 .button_download:hover {
     background-color: #989001;
+}
+
+@media screen and (max-width: 1300px) {
+    .panel__text {
+        color: #000;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .photo__img {
+        box-shadow: 0;
+    }
+
+    .panel__avatar {
+        width: 48px;
+        height: 48px;
+    }
+
+    .photo__bg {
+        display: none;
+    }
+
+    .panel__name {
+        font-size: 18px;
+    }
+
+    .panel__tag {
+        font-size: 14px;
+        color: #bdbdbd;
+    }
+
+    .button_download {
+        margin-left: 16px;
+    }
+    .button_favourite {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .button_download,
+    .button_favourite {
+        width: 41px;
+        height: 41px;
+    }
+
+    .button__text {
+        display: none;
+    }
+
+    .button__img {
+        margin: 0;
+    }
 }
 </style>
