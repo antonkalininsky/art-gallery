@@ -8,96 +8,6 @@ const props = defineProps(["data"]);
 function isHorisontal(w, h) {
     return w > h ? true : false;
 }
-
-// {
-//     "id": "g4UaOhStx-Q",
-//     "created_at": "2023-02-24T08:39:54Z",
-//     "updated_at": "2023-04-15T18:40:04Z",
-//     "promoted_at": "2023-04-15T13:36:29Z",
-//     "width": 4480,
-//     "height": 6720,
-//     "color": "#0c2626",
-//     "blur_hash": "LI97hKxu4:M|Rjayt6j[0LRj-pt7",
-//     "description": null,
-//     "alt_description": "a close up of a white rose on a green background",
-//     "urls": {
-//         "raw": "https://plus.unsplash.com/premium_photo-1677178631537-21ebf6ff62ff?ixid=Mnw0MzY0MDF8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE2MzQyMDk&ixlib=rb-4.0.3",
-//         "full": "https://plus.unsplash.com/premium_photo-1677178631537-21ebf6ff62ff?crop=entropy&cs=srgb&fm=jpg&ixid=Mnw0MzY0MDF8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE2MzQyMDk&ixlib=rb-4.0.3&q=85",
-//         "regular": "https://plus.unsplash.com/premium_photo-1677178631537-21ebf6ff62ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0MzY0MDF8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE2MzQyMDk&ixlib=rb-4.0.3&q=80&w=1080",
-//         "small": "https://plus.unsplash.com/premium_photo-1677178631537-21ebf6ff62ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0MzY0MDF8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE2MzQyMDk&ixlib=rb-4.0.3&q=80&w=400",
-//         "thumb": "https://plus.unsplash.com/premium_photo-1677178631537-21ebf6ff62ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0MzY0MDF8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE2MzQyMDk&ixlib=rb-4.0.3&q=80&w=200",
-//         "small_s3": "https://s3.us-west-2.amazonaws.com/images.unsplash.com/small/unsplash-premium-photos-production/premium_photo-1677178631537-21ebf6ff62ff"
-//     },
-//     "links": {
-//         "self": "https://api.unsplash.com/photos/g4UaOhStx-Q",
-//         "html": "https://unsplash.com/photos/g4UaOhStx-Q",
-//         "download": "https://unsplash.com/photos/g4UaOhStx-Q/download?ixid=Mnw0MzY0MDF8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE2MzQyMDk",
-//         "download_location": "https://api.unsplash.com/photos/g4UaOhStx-Q/download?ixid=Mnw0MzY0MDF8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE2MzQyMDk"
-//     },
-//     "likes": 17,
-//     "liked_by_user": false,
-//     "current_user_collections": [],
-//     "sponsorship": null,
-//     "topic_submissions": {},
-//     "user": {
-//         "id": "yY8nbvLcnf4",
-//         "updated_at": "2023-04-16T08:21:15Z",
-//         "username": "tabithabrooke",
-//         "name": "tabitha turner",
-//         "first_name": "tabitha",
-//         "last_name": "turner",
-//         "twitter_username": "tabsturner",
-//         "portfolio_url": null,
-//         "bio": "hi! tabitha here! i'm a self-taught photographer and illustrator. i love traveling, finding quaint used bookstores, and drinking considerable amounts of coffee. available for hire. find me on instagram: @tabithabrookephotography",
-//         "location": "Tennessee",
-//         "links": {
-//             "self": "https://api.unsplash.com/users/tabithabrooke",
-//             "html": "https://unsplash.com/@tabithabrooke",
-//             "photos": "https://api.unsplash.com/users/tabithabrooke/photos",
-//             "likes": "https://api.unsplash.com/users/tabithabrooke/likes",
-//             "portfolio": "https://api.unsplash.com/users/tabithabrooke/portfolio",
-//             "following": "https://api.unsplash.com/users/tabithabrooke/following",
-//             "followers": "https://api.unsplash.com/users/tabithabrooke/followers"
-//         },
-//         "profile_image": {
-//             "small": "https://images.unsplash.com/profile-1665074075445-c56eb2367a8fimage?ixlib=rb-4.0.3&crop=faces&fit=crop&w=32&h=32",
-//             "medium": "https://images.unsplash.com/profile-1665074075445-c56eb2367a8fimage?ixlib=rb-4.0.3&crop=faces&fit=crop&w=64&h=64",
-//             "large": "https://images.unsplash.com/profile-1665074075445-c56eb2367a8fimage?ixlib=rb-4.0.3&crop=faces&fit=crop&w=128&h=128"
-//         },
-//         "instagram_username": "tabithabrookephotography",
-//         "total_collections": 2,
-//         "total_likes": 65,
-//         "total_photos": 742,
-//         "accepted_tos": true,
-//         "for_hire": true,
-//         "social": {
-//             "instagram_username": "tabithabrookephotography",
-//             "portfolio_url": null,
-//             "twitter_username": "tabsturner",
-//             "paypal_email": null
-//         }
-//     },
-//     "exif": {
-//         "make": null,
-//         "model": null,
-//         "name": null,
-//         "exposure_time": null,
-//         "aperture": null,
-//         "focal_length": null,
-//         "iso": null
-//     },
-//     "location": {
-//         "name": null,
-//         "city": null,
-//         "country": null,
-//         "position": {
-//             "latitude": 0,
-//             "longitude": 0
-//         }
-//     },
-//     "views": 0,
-//     "downloads": 0
-// }
 </script>
 
 <template lang="">
@@ -122,18 +32,24 @@ function isHorisontal(w, h) {
             <div class="card__likes">{{ props.data.likes }} likes</div>
             <div class="card__buttons">
                 <button
-                    class="card__favourite-btn card-button text"
+                    class="button button_favourite text"
                     @click="store.toggleFavourite(props.data.id)"
-                    :class="{}"
+                    :class="{
+                        button_favourite_true: store.checkFavourite(
+                            props.data.id
+                        ),
+                    }"
                 >
-                    <span v-if="store.checkFavourite(props.data.id)">
-                        <span class="card-button__status">В избранном</span>
-                        <span class="card-button__suggest">Удалить?</span>
-                    </span>
-                    <span v-else>Сохранить в избранное</span>
+                    <div class="button__inner">
+                        <img
+                            src="@/assets/img/icons/heart-black.svg"
+                            alt=""
+                            srcset=""
+                        />
+                    </div>
                 </button>
                 <button
-                    class="card__full-btn card-button text"
+                    class="button button_favourite button_fullsize text"
                     @click="
                         $router.push({
                             path: '/photo',
@@ -143,7 +59,13 @@ function isHorisontal(w, h) {
                         })
                     "
                 >
-                    Фулл
+                    <div class="button__inner">
+                        <img
+                            src="@/assets/img/icons/fullsize.png"
+                            alt=""
+                            srcset=""
+                        />
+                    </div>
                 </button>
             </div>
         </div>
@@ -205,29 +127,51 @@ function isHorisontal(w, h) {
     font-size: 26px;
 }
 
-.card-button {
-    background-color: transparent;
-    border: 2px solid #ffffff88;
-    padding: 20px;
-    margin: 0 10px;
+.card__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    background: #ffffff;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    border: 0;
+    margin-left: 20px;
     cursor: pointer;
-    border-radius: 20px;
 }
 
-.card-button:hover {
-    outline: 2px solid #fff;
+.button__inner {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.card__favourite-btn:hover .card-button__status {
-    display: none;
+.button__img {
 }
 
-.card-button__suggest {
-    display: none;
+.button_favourite {
+    width: 49.07px;
+    height: 49.07px;
 }
 
-.card__favourite-btn:hover .card-button__suggest {
-    display: inline;
+.button_favourite:hover {
+    background: #ccc;
+}
+
+.button_favourite_true {
+    background-color: rgb(81, 176, 81);
+}
+
+.button_favourite_true:hover {
+    background-color: rgb(217, 56, 56);
+}
+
+.button_fullsize {
+    background-color: #1d1d1d;
+    margin-right: 16px;
 }
 
 @media screen and (max-width: 1600px) {

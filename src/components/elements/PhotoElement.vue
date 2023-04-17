@@ -130,6 +130,7 @@ function openInNewTab() {
 }
 
 .panel__text {
+    color: white;
     padding-left: 10px;
 }
 
@@ -204,15 +205,14 @@ function openInNewTab() {
     background-color: #989001;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1050px) {
+
     .panel__text {
         color: #000;
     }
-}
 
-@media screen and (max-width: 1050px) {
     .photo__img {
-        box-shadow: 0;
+        box-shadow: unset;
     }
 
     .panel__avatar {
