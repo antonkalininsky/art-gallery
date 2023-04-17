@@ -35,7 +35,6 @@ export const useGeneralStore = defineStore("general", () => {
         const res = await fetch(requestUrl);
         const finalRes = await res.json();
         shownResults.value = finalRes;
-        // isLoading.value = false;
         setTimeout(() => {
             isLoading.value = false;
         }, 300);
@@ -43,7 +42,6 @@ export const useGeneralStore = defineStore("general", () => {
 
     async function getImageById(id) {
         isLoading.value = true;
-        console.log(id);
         const requestUrl = `https://api.unsplash.com/photos/${id}/?&client_id=${clientId}`;
         const res = await fetch(requestUrl);
         const finalRes = await res.json();
@@ -83,5 +81,6 @@ export const useGeneralStore = defineStore("general", () => {
         toggleFavourite,
         checkFavourite,
         getFavouriteItems,
+        getImageById
     };
 });

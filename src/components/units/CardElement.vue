@@ -8,9 +8,6 @@ const props = defineProps(["data"]);
 function isHorisontal(w, h) {
     return w > h ? true : false;
 }
-// function isHorisontal(w, h) {
-//     return w > h ? true : false;
-// }
 
 // {
 //     "id": "g4UaOhStx-Q",
@@ -137,7 +134,14 @@ function isHorisontal(w, h) {
                 </button>
                 <button
                     class="card__full-btn card-button text"
-                    @click="$router.push('/photo')"
+                    @click="
+                        $router.push({
+                            path: '/photo',
+                            query: {
+                                id: props.data.id,
+                            },
+                        })
+                    "
                 >
                     Фулл
                 </button>
@@ -225,8 +229,6 @@ function isHorisontal(w, h) {
 .card__favourite-btn:hover .card-button__suggest {
     display: inline;
 }
-
-
 
 @media screen and (max-width: 1600px) {
     .card {

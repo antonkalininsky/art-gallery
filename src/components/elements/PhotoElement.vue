@@ -1,10 +1,12 @@
-<script setup></script>
+<script setup>
+const props = defineProps(["data"]);
+</script>
 
 <template lang="">
     <div class="photo">
         <div class="photo__bg">
             <img
-                src="./../../assets/img/bg/art-bg.png"
+                src="@\assets\img\bg\art-bg.png"
                 alt=""
                 class="photo__bg-img"
             />
@@ -47,11 +49,7 @@
                     </button>
                 </div>
             </div>
-            <img
-                src="./../../assets/img/art/art1.png"
-                alt=""
-                class="photo__img"
-            />
+            <img :src="props.data.urls.regular" alt="" class="photo__img" />
         </div>
     </div>
 </template>
@@ -60,7 +58,6 @@
 .photo {
     position: relative;
     height: 775px;
-    /* padding-bottom: 40px; */
 }
 
 .photo__bg {

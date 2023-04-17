@@ -1,5 +1,4 @@
 <script setup>
-import { defineProps } from "vue";
 import CardElement from "../units/CardElement.vue";
 import { useGeneralStore } from "@/stores/general"
 const store = useGeneralStore();

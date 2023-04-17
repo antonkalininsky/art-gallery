@@ -9,13 +9,11 @@ const items = ref([]);
 store.getFavouriteItems().then(
     (result) => {
         items.value = result;
-        console.log(result);
     },
     (error) => {
         console.log(error);
     }
 );
-// const items = computed(() => store.getFavouriteItems());
 </script>
 
 <template lang="">
