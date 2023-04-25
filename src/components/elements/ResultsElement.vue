@@ -4,7 +4,6 @@ import { useGeneralStore } from "@/stores/general";
 const store = useGeneralStore();
 
 const props = defineProps(["items"]);
-console.log(props.items);
 </script>
 
 <template lang="">
@@ -17,14 +16,14 @@ console.log(props.items);
         </div>
         <div class="results__loading" v-if="store.isLoading">
             <img
-                src="@/assets/img/icons/loading.png"
+                src="@/assets/img/icons/loader.svg"
                 alt=""
                 class="results__loading-img"
             />
         </div>
         <button class="results__scroll">
             <img
-                src="@/assets/img/icons/arrow.png"
+                src="@/assets/img/icons/arrow.svg"
                 alt=""
                 class="results__scroll-img"
             />
@@ -34,8 +33,8 @@ console.log(props.items);
 
 <style scoped>
 .results {
-    width: fit-content;
-    padding-top: 122px;
+    box-sizing: border-box;
+    padding-top: max(6vw + 16px, 45px);
 }
 
 .results__empty {
@@ -48,13 +47,10 @@ console.log(props.items);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 27px;
-    grid-template-rows: repeat(auto-fill, 0.5fr);
     padding-bottom: 70px;
 }
 
 .results__item {
-    width: 473.72px;
-    height: 453.74px;
     border-radius: 6px;
     overflow: hidden;
 
@@ -102,49 +98,17 @@ console.log(props.items);
     filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
 }
 
-@media screen and (max-width: 1600px) {
-    .results__item {
-        width: 360px;
-        height: 330px;
-    }
-}
-
-@media screen and (max-width: 1200px) {
+@media (max-width: 992px) { 
     .results__grid {
         grid-template-columns: 1fr 1fr;
     }
-
-    .results__item {
-        width: 473px;
-        height: 440px;
-    }
 }
 
-@media screen and (max-width: 1050px) {
-    .results__item {
-        width: 360px;
-        height: 330px;
-    }
-}
+@media (max-width: 767px) {
 
-@media screen and (max-width: 820px) {
     .results__grid {
-        grid-template-columns: auto;
-    }
-
-    .results__item {
-        width: 550px;
-        height: 500px;
+        grid-template-columns: 1fr;
     }
 }
 
-@media screen and (max-width: 700px) {
-    .results {
-        padding-top: 50px;
-    }
-    .results__item {
-        width: 335px;
-        height: 311px;
-    }
-}
 </style>

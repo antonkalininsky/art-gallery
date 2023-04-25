@@ -1,5 +1,4 @@
 <script setup>
-import { defineProps } from "vue";
 import { useGeneralStore } from "../../stores/general";
 const store = useGeneralStore();
 
@@ -12,6 +11,7 @@ function isHorisontal(w, h) {
 
 <template lang="">
     <div class="card">
+        
         <img
             :src="props.data.urls.regular"
             alt=""
@@ -61,7 +61,7 @@ function isHorisontal(w, h) {
                 >
                     <div class="button__inner">
                         <img
-                            src="@/assets/img/icons/fullsize.png"
+                            src="@/assets/img/icons/fullsize.svg"
                             alt=""
                             srcset=""
                         />
@@ -74,15 +74,12 @@ function isHorisontal(w, h) {
 
 <style scoped>
 .card {
+    aspect-ratio: 1 / 1;
     position: relative;
-
-    width: 473.72px;
-    height: 453.74px;
+    width: 100%;
     border-radius: 6px;
     overflow: hidden;
-
     background-color: #000;
-    /* cursor: pointer; */
 }
 
 .card__img {
@@ -171,38 +168,4 @@ function isHorisontal(w, h) {
     margin-right: 16px;
 }
 
-@media screen and (max-width: 1600px) {
-    .card {
-        width: 360px;
-        height: 330px;
-    }
-}
-
-@media screen and (max-width: 1200px) {
-    .card {
-        width: 473px;
-        height: 440px;
-    }
-}
-
-@media screen and (max-width: 1050px) {
-    .card {
-        width: 360px;
-        height: 330px;
-    }
-}
-
-@media screen and (max-width: 820px) {
-    .card {
-        width: 550px;
-        height: 500px;
-    }
-}
-
-@media screen and (max-width: 700px) {
-    .card {
-        width: 335px;
-        height: 311px;
-    }
-}
 </style>

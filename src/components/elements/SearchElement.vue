@@ -1,7 +1,7 @@
 <script setup>
 import { watch, ref } from "vue";
-import { debounce } from "@/funs/debounce"
-import { useGeneralStore } from "@/stores/general"
+import { debounce } from "@/funs/debounce";
+import { useGeneralStore } from "@/stores/general";
 
 const store = useGeneralStore();
 
@@ -22,11 +22,16 @@ watch(searchWord, () => {
             <img src="@/assets/img/bg/bg.png" alt="" class="search__img" />
         </div>
         <div class="search__form form">
-            <input type="text" class="form__input text" placeholder="Поиск" v-model="searchWord"/>
+            <input
+                type="text"
+                class="form__input text"
+                placeholder="Поиск"
+                v-model="searchWord"
+            />
             <button class="form__button">
                 <img
                     class="form__icon"
-                    src="@/assets/img/icons/search-black.png"
+                    src="@/assets/img/icons/search-black.svg"
                     alt=""
                     srcset=""
                 />
@@ -39,7 +44,7 @@ watch(searchWord, () => {
 .search {
     position: relative;
     width: 100%;
-    height: 250px;
+    height: max(3vw + 200px, 230px);
 
     display: flex;
     justify-content: center;
@@ -70,18 +75,20 @@ watch(searchWord, () => {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    min-width: 372px;
 }
 
 .search__img {
     width: 100%;
     height: auto;
-    opacity: 0.6;
-    margin-top: -30%;
+    opacity: 0.5;
 }
 
 .form {
     position: relative;
-    width: 866px;
+    box-sizing: border-box;
+    width: max(35vw + 150px, 335px);
+
     height: 70px;
     padding: 0 20px;
 }
@@ -91,7 +98,7 @@ watch(searchWord, () => {
     height: 100%;
 
     box-sizing: border-box;
-    padding: 21px 69px 21px 39px;
+    padding: 1em 3em 1em min(1vw + 1em, 2em);
     font-size: 24px;
     color: #000000;
 }
@@ -105,40 +112,9 @@ watch(searchWord, () => {
     top: 24px;
 }
 
-@media screen and (max-width: 1200px) {
-    .form {
-        width: 600px;
-    }
-
-    .search__img {
-        margin-top: -10%;
-    }
-}
-
-@media screen and (max-width: 700px) {
+@media (max-width: 767px) {
     .search::after {
         display: none;
-    }
-    .form {
-        width: 335px;
-    }
-
-    .form__input {
-        padding: 21px 69px 21px 25px;
-    }
-
-    .search__img {
-        width: 100%;
-        height: auto;
-        margin-top: 0;
-    }
-}
-
-@media screen and (max-width: 405px) {
-    .search__img {
-        width: auto;
-        height: 100%;
-        margin-top: 0;
     }
 }
 </style>

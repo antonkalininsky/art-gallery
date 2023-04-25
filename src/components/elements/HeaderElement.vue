@@ -1,6 +1,4 @@
 <script setup>
-import { defineProps } from "vue";
-
 const props = defineProps({
     hideSearch: {
         default: false,
@@ -12,12 +10,12 @@ const props = defineProps({
     <header class="header">
         <div class="header__inner wrap-prop">
             <div class="header__logo">
-                <img src="@/assets/img/logo/logo.png" alt="" class="logo" />
+                <img src="@/assets/img/logo/logo.svg" alt="" class="logo" />
             </div>
             <nav class="header__nav nav">
                 <routerLink to="/" class="nav__item" v-if="!hideSearch">
                     <img
-                        src="@/assets/img/icons/search-white.png"
+                        src="@/assets/img/icons/search-white.svg"
                         alt=""
                         class="nav__icon"
                     />
@@ -25,7 +23,7 @@ const props = defineProps({
                 </routerLink>
                 <routerLink to="/fav" class="nav__item">
                     <img
-                        src="@/assets/img/icons/heart-white.png"
+                        src="@/assets/img/icons/heart-white.svg"
                         alt=""
                         class="nav__icon"
                     />
@@ -40,16 +38,22 @@ const props = defineProps({
 .header {
     background-color: #000;
     width: 100%;
-    height: 150px;
+    height: max(5vw + 50px, 70px);
 
     display: flex;
     align-items: center;
 }
 
 .header__inner {
+    box-sizing: border-box;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.header__logo {
+    width: max(8vw + 40px, 84px);
 }
 
 .logo {
@@ -66,6 +70,7 @@ const props = defineProps({
 }
 
 .nav__item {
+    font-size: 18px;
     margin-left: 38px;
     cursor: pointer;
 }
@@ -78,26 +83,9 @@ const props = defineProps({
     margin-left: 12px;
 }
 
-@media screen and (max-width: 1200px) {
-    .header {
-        height: 110px;
-    }
-
-    .header__logo {
-        width: 150px;
-    }
-}
-@media screen and (max-width: 700px) {
-    .header {
-        height: 70px;
-    }
-
+@media (max-width: 767px) {
     .nav__text {
         display: none;
-    }
-
-    .header__logo {
-        width: 84px;
     }
 }
 </style>
