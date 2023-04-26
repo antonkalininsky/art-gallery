@@ -10,13 +10,10 @@ function openInNewTab() {
 
 <template lang="">
     <div class="photo">
-        <div class="photo__bg">
-            <img
-                src="@\assets\img\bg\art-bg.png"
-                alt=""
-                class="photo__bg-img"
-            />
+        <div class="photo__bg-wrap">
+            <div class="photo__bg"></div>
         </div>
+
         <div class="photo__inner wrap-prop">
             <div class="photo__panel panel text">
                 <div class="panel__author">
@@ -80,27 +77,34 @@ function openInNewTab() {
 
 <style scoped>
 .photo {
-    position: relative;
     height: 775px;
+    position: relative;
+}
+
+.photo__bg-wrap {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
 }
 
 .photo__bg {
-    z-index: -100;
     position: absolute;
-    top: 0;
-    width: 100%;
+    background: linear-gradient(
+            rgba(0, 0, 0, 0.5) 100%,
+            rgba(0, 0, 0, 0.5) 100%
+        ),
+        url("@/assets/img/bg/art-bg.png");
+    transform: scale(1.1);
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
     height: 100%;
-    overflow: hidden;
-    background-color: #000;
-    backdrop-filter: blur(4px);
-
+    width: 100%;
+    z-index: -100;
 }
 
-.photo__bg-img {
-    width: 200%;
-    height: auto;
-    opacity: 0.5;
-    background-blend-mode: color, normal;
+.photo__inner {
+    z-index: 9999;
 }
 
 .panel {
@@ -209,7 +213,6 @@ function openInNewTab() {
 }
 
 @media screen and (max-width: 1050px) {
-
     .panel__text {
         color: #000;
     }
