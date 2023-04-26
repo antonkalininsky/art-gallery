@@ -29,23 +29,25 @@ function isHorisontal(w, h) {
         />
         <div class="card__data text">
             <div class="card__author">{{ props.data.user.name }}</div>
-            <div class="card__likes">{{ props.data.likes }} likes</div>
             <div class="card__buttons">
                 <button
                     class="button button_favourite text"
                     @click="store.toggleFavourite(props.data.id)"
-                    :class="{
-                        button_favourite_true: store.checkFavourite(
-                            props.data.id
-                        ),
-                    }"
                 >
-                    <div class="button__inner">
+                    <div class="button__inner">                        
                         <img
-                            src="@/assets/img/icons/heart-black.svg"
+                            src="@/assets/img/icons/heart-yellow.svg"
                             alt=""
                             srcset=""
+                            v-if="store.checkFavourite(props.data.id)"
                         />
+                        <img
+                            src="@/assets/img/icons/heart-white.svg"
+                            alt=""
+                            srcset=""
+                            v-else
+                        />
+
                     </div>
                 </button>
                 <button
@@ -87,7 +89,7 @@ function isHorisontal(w, h) {
 }
 
 .card:hover .card__img {
-    opacity: 0.3;
+    opacity: 0.6;
 }
 
 .card:hover .card__data {
@@ -131,7 +133,7 @@ function isHorisontal(w, h) {
 }
 
 .button {
-    background: #ffffff;
+    background: #1d1d1d;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
     border: 0;
@@ -152,15 +154,7 @@ function isHorisontal(w, h) {
 }
 
 .button_favourite:hover {
-    background: #ccc;
-}
-
-.button_favourite_true {
-    background-color: rgb(81, 176, 81);
-}
-
-.button_favourite_true:hover {
-    background-color: rgb(217, 56, 56);
+    background: #3c3c3c;
 }
 
 .button_fullsize {

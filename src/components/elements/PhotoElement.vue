@@ -92,12 +92,15 @@ function openInNewTab() {
     height: 100%;
     overflow: hidden;
     background-color: #000;
+    backdrop-filter: blur(4px);
+
 }
 
 .photo__bg-img {
     width: 200%;
     height: auto;
     opacity: 0.5;
+    background-blend-mode: color, normal;
 }
 
 .panel {

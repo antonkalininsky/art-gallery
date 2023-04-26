@@ -19,9 +19,21 @@ store.getFavouriteItems().then(
 <template lang="">
     <div>
         <HeaderElement />
-        <h1 class="header text">Избранное</h1>
+        <h1 class="section-header text">Избранное</h1>
         <ResultsElement :items="items" />
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.section-header {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: clamp(36px, 5vw, 72px);
+    line-height: 84px;
+    text-align: center;
+    color: #000000;
+
+    padding-top: max(5vw, 40px);
+}
+</style>
