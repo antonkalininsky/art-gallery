@@ -4,8 +4,14 @@ const store = useGeneralStore();
 
 const props = defineProps(["data"]);
 
-function openInNewTab() {
-    window.open(props.data.urls.regular);
+async function downloadImage() {
+    const res = await fetch(props.data.urls.regular);
+    const blob = await res.blob();
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = props.data.id;
+    link.click();
+    URL.revokeObjectURL(link.href);
 }
 </script>
 
@@ -51,7 +57,10 @@ function openInNewTab() {
                     />
                 </div>
             </button>
-            <button class="button button_download text" @click="openInNewTab()">
+            <button
+                class="button button_download text"
+                @click="downloadImage()"
+            >
                 <div class="button__inner">
                     <img
                         src="@/assets/img/icons/download.svg"
@@ -112,6 +121,10 @@ function openInNewTab() {
 
 .panel__buttons {
     height: min-content;
+}
+
+.form {
+    display: inline-block;
 }
 
 .button {

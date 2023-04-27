@@ -67,7 +67,6 @@ export const useGeneralStore = defineStore(
         async function getFavouriteItems() {
             const buf = [];
             for (let item of favouriteList.value) {
-                console.log();
                 buf.push(await getImageById(item));
             }
             return buf;
