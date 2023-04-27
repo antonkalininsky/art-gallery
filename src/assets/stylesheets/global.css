@@ -18,7 +18,7 @@ a {
 }
 
 .wrap-prop {
-    min-width: 375px;
+    min-width: 335px;
     max-width: 1470px;
     padding: 0 20px;
     margin-inline: auto;
