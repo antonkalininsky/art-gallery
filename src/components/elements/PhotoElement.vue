@@ -3,6 +3,10 @@ import PhotoPanelElement from "./PhotoPanelElement.vue";
 import { useGeneralStore } from "../../stores/general";
 const store = useGeneralStore();
 const props = defineProps(["data"]);
+
+function openInNewTab() {
+    window.open(props.data.urls.regular);
+}
 </script>
 
 <template lang="">
@@ -13,6 +17,9 @@ const props = defineProps(["data"]);
         <div class="photo__inner wrap-prop">
             <PhotoPanelElement class="photo__panel" :data="props.data" />
             <img :src="props.data.urls.regular" alt="" class="photo__img" />
+            <button class="photo__full-btn" @click="openInNewTab()">
+                <img class="photo__full-img" src="@/assets/img/icons/fullsize.svg" alt="" srcset="">
+            </button>
         </div>
     </div>
 </template>
@@ -48,6 +55,7 @@ const props = defineProps(["data"]);
 
 .photo__inner {
     z-index: 9999;
+    position: relative;
 }
 .photo__img {
     width: 100%;
@@ -55,6 +63,22 @@ const props = defineProps(["data"]);
     margin-bottom: 40px;
     border-radius: 8px;
     box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.5);
+}
+
+.photo__full-btn {
+    position: absolute;
+    right: calc(20px + max(2vw, 10px));
+    bottom: calc(40px + max(2vw, 10px));
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+}
+
+.photo__full-img {
+    width: max(1.5vw, 20px);
+    height: auto;
 }
 
 @media (max-width: 992px) {
