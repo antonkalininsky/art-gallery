@@ -1,14 +1,39 @@
 <script setup>
+import { ref } from 'vue'
 import CardElement from "../units/CardElement.vue";
 import { useGeneralStore } from "@/stores/general";
 const store = useGeneralStore();
 
 const props = defineProps(["items"]);
+
+const positionY = ref(0);
+const timerScroll = ref(0);
+
+window.addEventListener('scroll', scrollHandler)
+
+function scrollHandler() {
+    if (timerScroll.value) return;
+    timerScroll.value = setTimeout(() => {
+        positionY.value = window.scrollY;
+        clearTimeout(timerScroll.value);
+        timerScroll.value = 0;
+    }, 100);
+}
+
+function scrollTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    });
+}
 </script>
 
 <template lang="">
     <div class="results wrap-prop">
-        <h2 class="results__empty text" v-if="props.items.length === 0 && !store.isLoading">
+        <h2
+            class="results__empty text"
+            v-if="props.items.length === 0 && !store.isLoading"
+        >
             Ничего не найдено
         </h2>
         <div class="results__grid" v-if="!store.isLoading">
@@ -21,7 +46,7 @@ const props = defineProps(["items"]);
                 class="results__loading-img"
             />
         </div>
-        <button class="results__scroll">
+        <button class="results__scroll" @click="scrollTop()" v-show="positionY > 300">
             <img
                 src="@/assets/img/icons/arrow.svg"
                 alt=""
@@ -83,7 +108,7 @@ const props = defineProps(["items"]);
 }
 
 .results__scroll {
-    display: none;
+    cursor: pointer;
 
     position: fixed;
     right: 50px;
@@ -98,17 +123,15 @@ const props = defineProps(["items"]);
     filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
 }
 
-@media (max-width: 992px) { 
+@media (max-width: 992px) {
     .results__grid {
         grid-template-columns: 1fr 1fr;
     }
 }
 
 @media (max-width: 767px) {
-
     .results__grid {
         grid-template-columns: 1fr;
     }
 }
-
 </style>
