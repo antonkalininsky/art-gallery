@@ -1,31 +1,18 @@
 <script setup>
-import HeaderElement from './elements/HeaderElement.vue';
-import PhotoElement from './elements/PhotoElement.vue';
+import HeaderElement from "./elements/HeaderElement.vue";
+import PhotoElement from "./elements/PhotoElement.vue";
 import { useRoute } from "vue-router";
-import { ref } from "vue";
-import { useGeneralStore } from "@/stores/general";
-const store = useGeneralStore();
 const route = useRoute();
 
-const imgData = ref();
-
-store.getImageById(route.query.id).then(
-    (result) => {
-        imgData.value = result;
-    },
-    (error) => {
-        console.log(error);
-    }
-);
 </script>
 
 <template lang="">
     <div>
         <HeaderElement />
-        <PhotoElement :data="imgData"/>
+        <Suspense>
+            <PhotoElement :id="route.query.id" />
+        </Suspense>
     </div>
 </template>
 
-<style lang="">
-    
-</style>
+<style lang=""></style>
