@@ -200,4 +200,14 @@ async function downloadImage() {
         margin: 0;
     }
 }
+
+@media (max-width: 375px) {
+    .panel__avatar {
+        display: none;
+    }
+
+    .button_download{
+        margin-left: 10px;
+    }
+}
 </style>

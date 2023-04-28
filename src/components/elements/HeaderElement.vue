@@ -37,7 +37,7 @@ const props = defineProps({
 <style scoped>
 .header {
     background-color: #000;
-    width: 100%;
+    width: max(100%, 320px);
     height: max(5vw + 50px, 70px);
 
     display: flex;

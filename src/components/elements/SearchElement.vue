@@ -75,7 +75,7 @@ watch(searchWord, () => {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    min-width: 372px;
+    min-width: 320px;
 }
 
 .search__img {
@@ -115,6 +115,13 @@ watch(searchWord, () => {
 @media (max-width: 767px) {
     .search::after {
         display: none;
+    }
+}
+
+@media (max-width: 375px) {
+    .search__img {
+        width: auto;
+        height: 100%;
     }
 }
 </style>
