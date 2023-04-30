@@ -2,18 +2,12 @@
 import { ref } from "@vue/reactivity";
 import HeaderElement from "./elements/HeaderElement.vue";
 import ResultsElement from "./elements/ResultsElement.vue";
-import { useGeneralStore } from "@/stores/general";
-const store = useGeneralStore();
+import { useRequestStore } from "../stores/requestStore";
 
+const requestStore = useRequestStore();
 const items = ref([]);
-store.getFavouriteItems().then(
-    (result) => {
-        items.value = result;
-    },
-    (error) => {
-        console.log(error);
-    }
-);
+
+items.value = requestStore.getFavouriteItems();
 </script>
 
 <template lang="">

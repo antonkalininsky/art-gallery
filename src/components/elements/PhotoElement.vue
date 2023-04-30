@@ -1,20 +1,15 @@
 <script setup>
 import PhotoPanelElement from "./PhotoPanelElement.vue";
-import { useGeneralStore } from "../../stores/general";
+import { useRequestStore } from "../../stores/requestStore";
 import { ref } from "vue";
-const store = useGeneralStore();
-const props = defineProps(["id"]);
 
+const requestStore = useRequestStore();
+const props = defineProps(["id"]);
 const imgData = ref();
 
-await store.getImageById(props.id).then(
-    (result) => {
-        imgData.value = result;
-    },
-    (error) => {
-        console.log(error);
-    }
-);
+await requestStore.getImageById(props.id).then((res) => {
+    imgData.value = res;
+});
 
 function openInNewTab() {
     window.open(imgData.value.urls.regular);
@@ -30,7 +25,12 @@ function openInNewTab() {
             <PhotoPanelElement class="photo__panel" :data="imgData" />
             <img :src="imgData.urls.regular" alt="" class="photo__img" />
             <button class="photo__full-btn" @click="openInNewTab()">
-                <img class="photo__full-img" src="@/assets/img/icons/fullsize.svg" alt="" srcset="">
+                <img
+                    class="photo__full-img"
+                    src="@/assets/img/icons/fullsize.svg"
+                    alt=""
+                    srcset=""
+                />
             </button>
         </div>
     </div>

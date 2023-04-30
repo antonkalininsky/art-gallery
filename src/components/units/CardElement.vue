@@ -1,7 +1,7 @@
 <script setup>
-import { useGeneralStore } from "../../stores/general";
-const store = useGeneralStore();
+import { useFavouriteStore } from "../../stores/favouriteStore";
 
+const favouriteStore = useFavouriteStore();
 const props = defineProps(["data"]);
 
 function isHorisontal(w, h) {
@@ -11,7 +11,6 @@ function isHorisontal(w, h) {
 
 <template lang="">
     <div class="card">
-        
         <img
             :src="props.data.urls.regular"
             alt=""
@@ -32,14 +31,14 @@ function isHorisontal(w, h) {
             <div class="card__buttons">
                 <button
                     class="button button_favourite text"
-                    @click="store.toggleFavourite(props.data.id)"
+                    @click="favouriteStore.toggleFavourite(props.data.id)"
                 >
-                    <div class="button__inner">                        
+                    <div class="button__inner">
                         <img
                             src="@/assets/img/icons/heart-yellow.svg"
                             alt=""
                             srcset=""
-                            v-if="store.checkFavourite(props.data.id)"
+                            v-if="favouriteStore.checkFavourite(props.data.id)"
                         />
                         <img
                             src="@/assets/img/icons/heart-white.svg"
@@ -47,7 +46,6 @@ function isHorisontal(w, h) {
                             srcset=""
                             v-else
                         />
-
                     </div>
                 </button>
                 <button
@@ -161,5 +159,4 @@ function isHorisontal(w, h) {
     background-color: #1d1d1d;
     margin-right: 16px;
 }
-
 </style>

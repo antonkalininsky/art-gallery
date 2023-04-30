@@ -1,17 +1,24 @@
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 import CardElement from "../units/CardElement.vue";
-import { useGeneralStore } from "@/stores/general";
-const store = useGeneralStore();
+import { useLoadingStore } from "../../stores/loadingStore";
+const loadingStore = useLoadingStore();
 
-const props = defineProps(["items"]);
+const props = defineProps({
+    items: {
+        type: Array,
+        default: [],
+    },
+});
+
+console.log(props.items);
 
 const positionY = ref(0);
 const timerScroll = ref(0);
 
-window.addEventListener('scroll', scrollHandler)
+window.addEventListener("scroll", showButtonOnScroll);
 
-function scrollHandler() {
+function showButtonOnScroll() {
     if (timerScroll.value) return;
     timerScroll.value = setTimeout(() => {
         positionY.value = window.scrollY;
@@ -30,23 +37,32 @@ function scrollTop() {
 
 <template lang="">
     <div class="results wrap-prop">
-        <h2
-            class="results__empty text"
-            v-if="props.items.length === 0 && !store.isLoading"
-        >
-            Ничего не найдено
+        <h2 class="results__empty text" v-show="!loadingStore.isLoading">
+            <span v-show="!loadingStore.isError && props.items.length === 0">
+                Ничего не найдено
+            </span>
+            <span v-show="loadingStore.isError">
+                Сервис изображений не работает, повторите попытку позднее.
+            </span>
         </h2>
-        <div class="results__grid" v-if="!store.isLoading">
+        <div
+            class="results__grid"
+            v-if="!loadingStore.isLoading && !loadingStore.isError"
+        >
             <CardElement :data="item" v-for="item in props.items" />
         </div>
-        <div class="results__loading" v-if="store.isLoading">
+        <div class="results__loading" v-show="loadingStore.isLoading">
             <img
                 src="@/assets/img/icons/loader.svg"
                 alt=""
                 class="results__loading-img"
             />
         </div>
-        <button class="results__scroll" @click="scrollTop()" v-show="positionY > 300">
+        <button
+            class="results__scroll"
+            @click="scrollTop()"
+            v-show="positionY > 300"
+        >
             <img
                 src="@/assets/img/icons/arrow.svg"
                 alt=""
@@ -63,6 +79,7 @@ function scrollTop() {
 }
 
 .results__empty {
+    text-align: center;
     color: #000;
     font-size: 26px;
     font-weight: 900;

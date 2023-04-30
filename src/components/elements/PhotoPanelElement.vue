@@ -1,17 +1,21 @@
 <script setup>
-import { useGeneralStore } from "../../stores/general";
-const store = useGeneralStore();
+import { useFavouriteStore } from "../../stores/favouriteStore";
 
+const favouriteStore = useFavouriteStore();
 const props = defineProps(["data"]);
 
 async function downloadImage() {
-    const res = await fetch(props.data.urls.regular);
-    const blob = await res.blob();
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = props.data.id;
-    link.click();
-    URL.revokeObjectURL(link.href);
+    try {
+        const res = await fetch(props.data.urls.regular);
+        const blob = await res.blob();
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = props.data.id;
+        link.click();
+        URL.revokeObjectURL(link.href);
+    } catch (error) {
+        console.log(error);
+    }
 }
 </script>
 
@@ -40,14 +44,14 @@ async function downloadImage() {
         <div class="panel__buttons">
             <button
                 class="button button_favourite text"
-                @click="store.toggleFavourite(props.data.id)"
+                @click="favouriteStore.toggleFavourite(props.data.id)"
             >
                 <div class="button__inner">
                     <img
                         src="@/assets/img/icons/heart-yellow.svg"
                         alt=""
                         srcset=""
-                        v-if="store.checkFavourite(props.data.id)"
+                        v-if="favouriteStore.checkFavourite(props.data.id)"
                     />
                     <img
                         src="@/assets/img/icons/heart-black.svg"
@@ -206,7 +210,7 @@ async function downloadImage() {
         display: none;
     }
 
-    .button_download{
+    .button_download {
         margin-left: 10px;
     }
 }

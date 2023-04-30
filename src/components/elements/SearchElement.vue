@@ -1,14 +1,13 @@
 <script setup>
 import { watch, ref } from "vue";
 import { debounce } from "@/funs/debounce";
-import { useGeneralStore } from "@/stores/general";
+import { useSearchStore } from "../../stores/searchStore";
 
-const store = useGeneralStore();
-
+const searchStore = useSearchStore();
 const searchWord = ref("");
 
 const searchDebouncer = debounce(() => {
-    store.searchWord = searchWord.value;
+    searchStore.searchWord = searchWord.value;
 }, 300);
 
 watch(searchWord, () => {
@@ -110,6 +109,8 @@ watch(searchWord, () => {
     position: absolute;
     right: 44px;
     top: 24px;
+
+    cursor: pointer;
 }
 
 @media (max-width: 767px) {
