@@ -42,16 +42,15 @@ export const useRequestStore = defineStore("request", () => {
         );
     }
 
-    function getFavouriteItems() {
+    async function getFavouriteItems() {
         loadingStore.isLoading++;
         const favItems = [];
         for (let item of favouriteStore.favouriteList) {
-            getImageById(item).then((res) => {
+            await getImageById(item).then((res) => {
                 favItems.push(res);
             });
         }
         loadingStore.isLoading--;
-        console.log(favItems);
         return favItems;
     }
 

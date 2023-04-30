@@ -8,6 +8,10 @@ a {
     color: unset;
 }
 
+html {
+    overflow-y: scroll;
+}
+
 .text {
     font-family: 'Roboto';
     font-style: normal;

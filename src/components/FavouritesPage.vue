@@ -7,14 +7,19 @@ import { useRequestStore } from "../stores/requestStore";
 const requestStore = useRequestStore();
 const items = ref([]);
 
-items.value = requestStore.getFavouriteItems();
+requestStore
+    .getFavouriteItems()
+    .then((res) => (items.value = res))
+    .catch((err) => console.log(err));
 </script>
 
 <template lang="">
     <div>
         <HeaderElement />
         <h1 class="section-header text">Избранное</h1>
-        <ResultsElement :items="items" />
+        <Suspense>
+            <ResultsElement :items="items" />
+        </Suspense>
     </div>
 </template>
 

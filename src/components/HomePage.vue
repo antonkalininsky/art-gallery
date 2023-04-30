@@ -20,7 +20,9 @@ requestStore
     <div>
         <HeaderElement :hideSearch="true" />
         <SearchElement />
-        <ResultsElement :items="searchStore.shownResults" />
+        <Suspense>
+            <ResultsElement :items="searchStore.shownResults" />
+        </Suspense>
     </div>
 </template>
 

@@ -12,7 +12,7 @@ function isHorisontal(w, h) {
 <template lang="">
     <div class="card">
         <img
-            :src="props.data.urls.regular"
+            :src="props.data.urls.small"
             alt=""
             class="card__img"
             :class="{

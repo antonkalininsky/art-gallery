@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import CardElement from "../units/CardElement.vue";
+import CardUnit from "../units/CardUnit.vue";
 import { useLoadingStore } from "../../stores/loadingStore";
 const loadingStore = useLoadingStore();
 
@@ -10,8 +10,6 @@ const props = defineProps({
         default: [],
     },
 });
-
-console.log(props.items);
 
 const positionY = ref(0);
 const timerScroll = ref(0);
@@ -49,7 +47,7 @@ function scrollTop() {
             class="results__grid"
             v-if="!loadingStore.isLoading && !loadingStore.isError"
         >
-            <CardElement :data="item" v-for="item in props.items" />
+            <CardUnit :data="item" v-for="item in props.items" :key="item.id"/>
         </div>
         <div class="results__loading" v-show="loadingStore.isLoading">
             <img
