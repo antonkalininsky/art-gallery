@@ -1,8 +1,10 @@
 <script setup>
 import PhotoPanelElement from "./PhotoPanelElement.vue";
 import { useRequestStore } from "../../stores/requestStore";
+import { useLoadingStore } from "../../stores/loadingStore";
 import { ref } from "vue";
 
+const loadingStore = useLoadingStore();
 const requestStore = useRequestStore();
 const props = defineProps(["id"]);
 const imgData = ref();
@@ -21,7 +23,10 @@ function openInNewTab() {
         <div class="photo__bg-wrap">
             <div class="photo__bg"></div>
         </div>
-        <div class="photo__inner wrap-prop">
+        <div
+            class="photo__inner wrap-prop"
+            v-if="!loadingStore.isLoading && !loadingStore.isError"
+        >
             <PhotoPanelElement class="photo__panel" :data="imgData" />
             <img :src="imgData.urls.regular" alt="" class="photo__img" />
             <button class="photo__full-btn" @click="openInNewTab()">
@@ -68,7 +73,9 @@ function openInNewTab() {
 .photo__inner {
     z-index: 9999;
     position: relative;
+    box-sizing: border-box;
 }
+
 .photo__img {
     width: 100%;
     height: auto;
